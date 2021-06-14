@@ -1,0 +1,21 @@
+version: "3"
+services:
+   hub:
+    image: selenium/hub:3.14
+    container_name: hub
+   chrome:
+    image: selenium/node-chrome:3.14
+    environment:
+     - HUB_HOST=hub
+    depends_on:
+     - hub
+   iris-module:
+    image: dcsuryawanshi/iris_ras_nts
+    depends_on:
+     - chrome
+    environment:
+     - BROWSER=chrome
+     - HUB_HOST=hub
+     - MODULE=irisRasModule.xml
+    volumes:
+     - ./iris-result:/usr/share/asurion/test-output

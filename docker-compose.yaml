@@ -18,4 +18,4 @@ services:
      - HUB_HOST=hub
      - MODULE=irisRasModule.xml
     volumes:
-     - ./iris-result:/usr/share/asurion/test-output
+     - ./output/iris-result:/usr/share/asurion/test-output

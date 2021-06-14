@@ -3,17 +3,17 @@ pipeline{
 	stages{
 		stage("Pull Latest Image"){
 			steps{
-				sh "docker pull vinsdocker/selenium-docker"
+				sh "docker pull dcsuryawanshi/iris_ras_nts"
 			}
 		}
 		stage("Start Grid"){
 			steps{
-				sh "docker-compose up -d hub chrome firefox"
+				sh "docker-compose up -d hub chrome"
 			}
 		}
 		stage("Run Test"){
 			steps{
-				sh "docker-compose up search-module book-flight-module"
+				sh "docker-compose up iris-module"
 			}
 		}
 	}

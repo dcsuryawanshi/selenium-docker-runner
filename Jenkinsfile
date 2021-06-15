@@ -3,25 +3,25 @@ pipeline{
 	stages{
 		stage("Pull Latest Image"){
 			steps{
-				sh "docker pull dcsuryawanshi/iris_ras_nts"
+				bat "docker pull dcsuryawanshi/iris_ras_nts"
 			}
 		}
 		stage("Start Grid"){
 			steps{
-				sh "docker-compose up -d hub chrome"
+				bat "docker-compose up -d hub chrome"
 			}
 		}
 		stage("Run Test"){
 			steps{
-				sh "docker-compose up iris-module"
+				bat "docker-compose up iris-module"
 			}
 		}
 	}
 	post{
 		always{
 			archiveArtifacts artifacts: 'output/**'
-			sh "docker-compose down"
-			sh "sudo rm -rf output/"
+			bat "docker-compose down"
+			bat "sudo rm -rf output/"
 		}
 	}
 }
